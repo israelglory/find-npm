@@ -6,9 +6,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import SearchList from './views/search_list';
 
 function App() {
-  
   return (
-    
     <main>
             <Switch>
                 <Route path="/" component={Home} exact />

@@ -102,10 +102,58 @@ code {
   margin: 0;
   flex-wrap: wrap; /* Allows items to wrap to a new line when there's not enough space */
   justify-content: space-between; /* Distributes items evenly, leaving space between them */
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 /* The grid items */
 .grid-item {
-  flex: 0 0 calc(33.33% - 15px); /* Each item takes up 33.33% of the container width with a small gap */
-  margin: 5px;
+  flex: 0 0 calc(33.33% - 10px); /* Each item takes up 33.33% of the container width with a small gap */
+  margin: 5px; 
+}
+.list-img{
+  max-width: 100%;
+  border-radius: 10px;
+
+}
+
+.item-container{
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+/* Media query to reduce the number of items to two in smaller screens */
+@media (max-width: 1135px) {
+  .grid-item {
+    flex-basis: calc(50% - 10px); /* Each item takes up 50% of the container width with a small gap */
+  }
+}
+
+/* Media query to show one item on even smaller screens */
+@media (max-width: 480px) {
+  .grid-item {
+    flex-basis: 100%; /* Each item takes up 100% of the container width, spanning the whole row */
+  }
+
+}
+
+span{
+  color: black;
+  font-weight: bold;
+  margin: 0px;
+  margin-bottom: 0.5em;
+  text-align: center;
+
+}
+
+.item-text{
+  margin: 0px;
+  color: black;
+  font-weight: normal;
+  margin-bottom: 2em;
+  text-align: start;
+  margin: 0px;
+  line-height: 25px;
 }

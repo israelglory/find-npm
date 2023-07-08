@@ -1,29 +1,46 @@
 import React from "react";
-import { useState } from 'react';
+import { useState,  } from 'react';
 import Loader from '../components/loader';
+import { useDispatch, useSelector } from "react-redux";
+import { searchData } from "../actions/action";
+import { useHistory } from "react-router-dom";
 
 function Home() {
     const [loading, setLoading] = useState(false);
+    const [text, setText] = useState("");
+    const dispatch = useDispatch();
+    const items = useSelector(state => state.search);
+    const history = useHistory();
+    
 
-  const handleSearch = () => {
+  const fetchUserData = () => {
     setLoading(true);
+    fetch("https://registry.npmjs.org/-/v1/search?text=" + text)
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        console.log(data['objects']);
+        //setUsers(data)
+        dispatch(searchData(data['objects']));
+        setLoading(false);
+        console.log(items);
+        history.push("/list");
+      })
+  }
 
-    // Simulating an asynchronous search request
-    setTimeout(() => {
-      setLoading(false);
-      // Perform your search logic here
-    }, 2000);
-  };
-  
   return (
     <>
     <div className='container'>
       <h1 className='title'>Find npm</h1>
       <p className='sub-title'>Find every details about a npm package and get comprehensive details about it</p>
       <div className='search-container'>
-        <input type="text" placeholder="Search..."  className='search-input'/>
-        <button onClick={handleSearch} className='search-button'>
-        {loading ? <Loader /> : 'Search'}
+        <input type="text" placeholder="Search..."  className='search-input' onChange={(e) => setText(e.target.value)}/>
+        <button onClick={fetchUserData} className='search-button'>
+        {loading ? 
+
+        <Loader />
+         : 'Search'}
         </button>
       </div>
     </div>

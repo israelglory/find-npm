@@ -1,31 +1,27 @@
 import React from "react";
-import { useState } from 'react';
-import Loader from '../components/loader';
+import { useSelector } from "react-redux";
 
 function SearchList() {
-    const [loading, setLoading] = useState(false);
-
-  const handleSearch = () => {
-    setLoading(true);
-
-    // Simulating an asynchronous search request
-    setTimeout(() => {
-      setLoading(false);
-      // Perform your search logic here
-    }, 2000);
-  };
+  const items = useSelector(state => state.search);
+  console.log(items);
+    const image = "https://www.zdnet.com/a/img/resize/d101e2906705d7a0320f654afc914fd1c3631443/2020/01/13/7b52414d-132a-4ef9-b050-0f16e37f433b/npm.png?auto=webp&width=1280"
   
   return (
     <>
-    <div className='container'>
-      {/* <h1 className='title'>Find npm</h1>
-      <p className='sub-title'>Find every details about a npm package and get comprehensive details about it</p> */}
-      <div className='search-container'>
-        <input type="text" placeholder="Search in Search Page"  className='search-input'/>
-        <button onClick={handleSearch} className='search-button'>
-        {loading ? <Loader /> : 'Search'}
-        </button>
+    <h1 className='title'>Packages</h1>
+    <div className='grid-container'>
+    {items.map((item)  => {
+      return(
+        <div className='grid-item' key={item.package.name}>
+        <div className="item-container">
+        <img src={image} alt="hello" className='list-img' />
+            <div className='item-text'>Package Name: <span>{item.package.name}</span>  </div>
+            <div className='item-text'>Version: <span>{item.package.version}</span>  </div>
+            <div className='item-text'>Author Name: <span>{item.package.publisher.username}</span>  </div>
+        </div>
       </div>
+      )
+    })}
     </div>
     </>
   );
