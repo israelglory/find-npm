@@ -25,7 +25,7 @@ const image = "https://www.zdnet.com/a/img/resize/d101e2906705d7a0320f654afc914f
         <img src={image} alt="hello" className='list-img' />
             <div className='item-text'>Package Name: <span>{currentPackage.package.name}</span>  </div>
             <div className='item-text'>Version: <span>{currentPackage.package.version}</span>  </div>
-            <div className='item-text'>Author Name: <span>{currentPackage.package.publisher.username}</span>  </div>
+            <div className='item-text'>Author Name: <span>{authorName}</span>  </div>
             <div className='item-text'>Downloads: <span>{downloads.toLocaleString()}</span></div>
     </div>
     </div>
