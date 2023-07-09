@@ -2,7 +2,7 @@ import React from "react";
 import { useState,  } from 'react';
 import Loader from '../components/loader';
 import { useDispatch, useSelector } from "react-redux";
-import { searchData } from "../actions/action";
+import { search, searchData } from "../actions/action";
 import { useHistory } from "react-router-dom";
 
 function Home() {
@@ -23,6 +23,7 @@ function Home() {
         console.log(data['objects']);
         //setUsers(data)
         dispatch(searchData(data['objects']));
+        dispatch(search());
         setLoading(false);
         console.log(items);
         history.push("/list");
@@ -38,7 +39,6 @@ function Home() {
         <input type="text" placeholder="Search..."  className='search-input' onChange={(e) => setText(e.target.value)}/>
         <button onClick={fetchUserData} className='search-button'>
         {loading ? 
-
         <Loader />
          : 'Search'}
         </button>

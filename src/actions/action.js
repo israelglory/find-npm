@@ -4,3 +4,9 @@ export const searchData = (data) => {
         payload: data
     }
 }
+
+export const search = () => {
+    return {
+        type: 'SEARCH'
+    }
+}

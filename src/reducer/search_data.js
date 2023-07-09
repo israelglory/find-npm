@@ -1,7 +1,7 @@
 const searchReducer = (state = [], action) => {
     switch (action.type) {
         case 'SEARCH_DATA':
-            return state.concat(action.payload);
+            return state=action.payload;
         default:
             return state;
     }
